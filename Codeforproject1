@@ -8,6 +8,7 @@ from adafruit_circuitplayground import cp
 # Set up the PocketBeagle
 cp.pixels.brightness = 0.3
 cp.play_file("audio_file.wav")
+    
 
 # Set up the PIR motion sensor
 pir = digitalio.DigitalInOut(board.D6)
@@ -40,7 +41,7 @@ while True:
         led.value = False
         time.sleep(0.5)
 
-        # Play the audio file
+        # Play the audio file. For this project, I need to find an audio file of spooky halloween sounds
         cp.play_file("audio_file.wav")
 
     time.sleep(0.1)
