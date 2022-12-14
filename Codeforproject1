@@ -1,1 +1,45 @@
+# Python Code for PocketBeagle Halloween Candy Bowl Project
+import Adafruit_BBIO.GPIO as GPIO
+import Adafruit_BBIO.PWM as PWM
+import time
+
+# Set up the PIR motion sensor
+pir_sensor = "P9_12"
+GPIO.setup(pir_sensor, GPIO.IN)
+
+# Set up the servo motor
+servo_pin = "P9_14"
+PWM.start(servo_pin, 2.5, 60.0)
+
+# Set up the vibration motor
+vibration_motor = "P9_16"
+GPIO.setup(vibration_motor, GPIO.OUT)
+
+# Set up the LED strip
+led_strip = "P9_22"
+GPIO.setup(led_strip, GPIO.OUT)
+
+while True:
+  if GPIO.input(pir_sensor):
+    # Rotate the servo motor 90 degrees
+    PWM.set_duty_cycle(servo_pin, 12.5)
+    time.sleep(0.5)
+    PWM.set_duty_cycle(servo_pin, 2.5)
+
+    # Trigger the vibration motor
+    GPIO.output(vibration_motor, GPIO.HIGH)
+    time.sleep(0.5)
+    GPIO.output(vibration_motor, GPIO.LOW)
+
+    # Flash the LED strip
+    for i in range(10):
+      GPIO.output(led_strip, GPIO.HIGH)
+      time.sleep(0.1)
+      GPIO.output(led_strip, GPIO.LOW)
+      time.sleep(0.1)
+
+    # Play the audio file
+    # (Assuming the audio file is stored on the PocketBeagle)
+    os.system("aplay audio_file.wav")
+  time.sleep(0.1)
 
