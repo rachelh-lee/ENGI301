@@ -39,7 +39,7 @@ while True:
       time.sleep(0.1)
 
     # Play the audio file
-    # (Assuming the audio file is stored on the PocketBeagle)
+    # Make sure that the halloween spooky sound audio file is already uploaded on the PocketBeagle
     os.system("aplay audio_file.wav")
   time.sleep(0.1)
 
